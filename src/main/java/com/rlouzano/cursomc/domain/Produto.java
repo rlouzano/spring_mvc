@@ -1,5 +1,7 @@
 package com.rlouzano.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ public class Produto implements Serializable {
     private Integer id;
     private String nome;
     private Double preco;
+
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name = "PRODUTO_CATEGORIA", // nome da tabela que vai receber os id de relacionamento
             joinColumns = @JoinColumn(name = "produto_id"), // id primary key da tabela produto que tem relação com categoria
