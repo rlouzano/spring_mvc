@@ -12,21 +12,29 @@ public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+
+    @Column(unique=true)
     private String email;
     private String cpfOuCnpj;
     private Integer tipo;
 
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
 
     @ElementCollection
-    @CollectionTable(name = "TELEFONE")
-    private Set<String> telefones = new HashSet<>();  // não haverá reptição.
+    @CollectionTable(name="TELEFONE")
+    private Set<String> telefones = new HashSet<>();
+
+    @ElementCollection(fetch=FetchType.EAGER)
+    @CollectionTable(name="PERFIS")
+    private Set<Integer> perfis = new HashSet<>();
+
+    @OneToMany(mappedBy="cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente() {
     }
@@ -50,6 +58,15 @@ public class Cliente implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     public void setTipo(Integer tipo) {
@@ -111,4 +128,6 @@ public class Cliente implements Serializable {
     public void setTipo(TipoCliente tipo) {
         this.tipo = tipo.getCod();
     }
+
+
 }
