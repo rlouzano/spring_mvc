@@ -1,6 +1,7 @@
 package com.rlouzano.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rlouzano.cursomc.domain.enums.TipoCliente;
 
@@ -34,7 +35,7 @@ public class Cliente implements Serializable {
     @CollectionTable(name="PERFIS")
     private Set<Integer> perfis = new HashSet<>();
 
-    @JsonBackReference
+   @JsonIgnore
     @OneToMany(mappedBy="cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 

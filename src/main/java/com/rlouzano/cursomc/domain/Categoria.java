@@ -14,6 +14,7 @@ public class Categoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produto = new ArrayList<>();
 
