@@ -1,7 +1,6 @@
 package com.rlouzano.cursomc;
 
 import com.rlouzano.cursomc.domain.*;
-import com.rlouzano.cursomc.domain.enums.EstadoPagamento;
 import com.rlouzano.cursomc.domain.enums.TipoCliente;
 import com.rlouzano.cursomc.repositories.*;
 import com.rlouzano.cursomc.services.CategoriaService;
@@ -44,7 +43,7 @@ public class CursomcApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Categoria cat1 = new Categoria(null, "Informatica");
+       /* Categoria cat1 = new Categoria(null, "Informatica");
         Categoria cat2 = new Categoria(null, "Escritório");
 
         Produto p1 = new Produto(null, "Computador", 2000.00);
@@ -52,8 +51,8 @@ public class CursomcApplication implements CommandLineRunner {
         Produto p3 = new Produto(null, "Mouse", 80.00);
 
 
-        cat1.getProduto().addAll(Arrays.asList(p1, p2, p3));
-        cat2.getProduto().addAll(Arrays.asList(p2));
+        cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
+        cat2.getProdutos().addAll(Arrays.asList(p2));
         p1.getCategorias().addAll(Arrays.asList(cat1));
         p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
         p3.getCategorias().addAll(Arrays.asList(cat1));
@@ -129,5 +128,6 @@ public class CursomcApplication implements CommandLineRunner {
 
 
 
+    }*/
     }
 }
