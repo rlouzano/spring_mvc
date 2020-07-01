@@ -1,6 +1,7 @@
 package com.rlouzano.cursomc.resources;
 
 import com.rlouzano.cursomc.domain.Categoria;
+import com.rlouzano.cursomc.dto.CategoriaDTO;
 import com.rlouzano.cursomc.services.CategoriaService;
 import com.rlouzano.cursomc.services.exceptions.DataIntegrityException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias") //endponit
@@ -46,5 +48,12 @@ public class CategoriaResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
 
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CategoriaDTO>> findAll(){
+        List<Categoria> list = service.findAll();
+        List<CategoriaDTO> listDto = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
     }
 }

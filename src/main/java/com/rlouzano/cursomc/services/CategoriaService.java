@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +44,9 @@ public class CategoriaService {
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Não é possiveo excluir uma cagetegoria que possui produtos");
         }
+    }
+
+    public List<Categoria> findAll(){
+        return repo.findAll();
     }
 }
